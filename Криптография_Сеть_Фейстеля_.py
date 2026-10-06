@@ -59,7 +59,6 @@ def round_function(half: int, key: int) -> int:
     x = permute32(substitute32(x ^ rotl(key, 16, 32)))      # слой 2 (другая «версия» ключа)
     return x
 
-
 def generate_round_keys(master_key: bytes, rounds: int) -> list:
     state = int.from_bytes(master_key, "big")
     keys = []
@@ -105,7 +104,6 @@ def process_block(block: bytes, round_keys: list, decrypt: bool = False, log=Non
 def pad(data: bytes) -> bytes:
     pad_len = BLOCK_SIZE - (len(data) % BLOCK_SIZE)
     return data + b"\x80" + b"\x00" * (pad_len - 1)
-
 
 def unpad(data: bytes) -> bytes:
     idx = len(data) - 1
